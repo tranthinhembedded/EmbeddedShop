@@ -1,6 +1,26 @@
 pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
 plugins { id("com.facebook.react.settings") }
-extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
+
+def projectRoot = rootDir.parentFile.canonicalFile
+def autolinkingCacheDir = new File(rootDir, "build/generated/autolinking")
+def projectRootMarker = new File(autolinkingCacheDir, "project-root.txt")
+autolinkingCacheDir.mkdirs()
+projectRootMarker.text = projectRoot.absolutePath
+
+extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
+    ex.autolinkLibrariesFromCommand(
+        ["cmd", "/c", "npx", "@react-native-community/cli", "config"],
+        projectRoot,
+        files(
+            new File(projectRoot, "yarn.lock"),
+            new File(projectRoot, "package-lock.json"),
+            new File(projectRoot, "package.json"),
+            new File(projectRoot, "react-native.config.js"),
+            projectRootMarker
+        )
+    )
+}
+
 rootProject.name = 'EmbeddedShop'
 include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')

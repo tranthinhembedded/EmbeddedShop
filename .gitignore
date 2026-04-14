@@ -63,6 +63,11 @@ yarn-error.log
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*
 
+# Environment files
+.env
+.env.*
+!.env.example
+
 # testing
 /coverage
 
@@ -78,3 +83,11 @@ yarn-error.log
 *.rar
 app-release.apk
 android/build_log*.txt
+release/
+*-release.apk
+*-release.rar
+
+# Local tooling and temp workdirs
+.bundle/
+.vscode/
+.tmp-*/

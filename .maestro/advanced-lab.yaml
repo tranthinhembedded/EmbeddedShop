@@ -1,0 +1,20 @@
+appId: com.shopaidemo
+---
+- launchApp
+- tapOn: "Profile"
+  optional: true
+- tapOn: "Open advanced lab"
+  optional: true
+- assertVisible: "ADVANCED LAB"
+  optional: true
+- scrollUntilVisible:
+    element:
+      text: "Pinch zoom"
+    direction: DOWN
+- assertVisible: "Pinch zoom"
+  optional: true
+- scrollUntilVisible:
+    element:
+      text: "Sticky checkout button"
+    direction: DOWN
+  optional: true

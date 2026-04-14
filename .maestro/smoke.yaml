@@ -1,0 +1,12 @@
+appId: com.shopaidemo
+---
+- launchApp
+- assertVisible: "EmbeddedShop"
+- assertVisible: "Loading profile"
+  optional: true
+- tapOn: "Profile"
+  optional: true
+- tapOn: "Open diagnostics"
+  optional: true
+- assertVisible: "Runtime telemetry dashboard"
+  optional: true

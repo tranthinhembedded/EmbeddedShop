@@ -1,30 +1,45 @@
 # EmbeddedShop
 
-EmbeddedShop is a React Native e-commerce demo app focused on a polished shopping experience, theme support, and a richer component system than a default starter project.
+EmbeddedShop is now a React Native storefront for embedded hardware, robotics modules, FPGA boards, and industrial IO. The visual language has been refocused around a control-room aesthetic instead of a generic consumer shop.
 
 ## Highlights
 
-- Modern storefront UI with product listing, search, cart, favorites, checkout, and profile flows
-- Design-system driven styling with reusable tokens and themed surfaces
-- Light and dark theme support
-- Advanced UI patterns such as sheets, toasts, skeleton loading states, and richer empty states
-- Android release build already generated as `EmbeddedShop-release.apk`
+- Embedded-electronics catalog with Raspberry Pi kits, FPGA boards, motor drivers, sensors, and robot chassis
+- Technology-first visual system using graphite surfaces, cyan-lime accents, and panel-like hardware cards
+- App shell with home, catalog, saved items, cart, checkout, profile, and order history flows
+- Local hardware glyph rendering so the product presentation feels technical even without external image assets
+- NativeWind-based design system and theme provider
+- Persisted Zustand + MMKV state layer for product, cart, user, UI, and telemetry domains
+- Advanced tooling routes for `AdvancedLab` and `Diagnostics`
+- Deep linking support for `embeddedshop://` and `https://embeddedshop.example.com`
 
 ## Tech Stack
 
 - React Native `0.84.1`
 - React `19`
 - TypeScript
-- React Navigation
+- React Navigation dependencies remain installed in the project
 
 ## Project Structure
 
 ```text
 .
 |-- App.tsx
-|-- app.json
-|-- assets/
-|   `-- images/
+|-- ARCHITECTURE.md
+|-- PERFORMANCE_GUIDE.md
+|-- ANIMATION_GUIDE.md
+|-- COMPONENT_DOCUMENTATION.md
+|-- BEST_PRACTICES.md
+|-- .maestro/
+|-- src/
+|   |-- EmbeddedShopApp.tsx
+|   |-- catalog.ts
+|   |-- theme.ts
+|   |-- navigation/
+|   |-- store/
+|   `-- screens/
+|   `-- components/
+|       `-- HardwareGlyph.tsx
 |-- android/
 |-- ios/
 |-- package.json
@@ -33,25 +48,13 @@ EmbeddedShop is a React Native e-commerce demo app focused on a polished shoppin
 
 ## Run Locally
 
-Install dependencies:
-
 ```sh
-npm install
+cmd /c npm install
+cmd /c npm start
+cmd /c npm run android
 ```
 
-Start Metro:
-
-```sh
-npm start
-```
-
-Run on Android:
-
-```sh
-npm run android
-```
-
-Run on iOS:
+For iOS:
 
 ```sh
 bundle install
@@ -61,26 +64,15 @@ cd ..
 npm run ios
 ```
 
-## Android Release Build
+## Advanced Routes
 
-Build a release APK:
+- `Settings -> Open advanced lab`
+- `Settings -> Open diagnostics`
 
-```sh
-cd android
-gradlew.bat assembleRelease
-```
+## Deep Linking
 
-The project is configured to use short Windows build paths for native intermediates to reduce `MAX_PATH` issues during release builds.
+Examples:
 
-## Repository Notes
-
-- `EmbeddedShop-release.apk` is tracked with Git LFS to keep future binary updates manageable.
-- Temporary logs and redundant archive artifacts are ignored from Git.
-- The visible app name is `EmbeddedShop`.
-- The current Android package/application id is still `com.shopaidemo`.
-
-## Next Improvements
-
-- Rename Android package and iOS bundle identifiers from the original starter values
-- Publish APKs through GitHub Releases once GitHub CLI or another authenticated release workflow is available
-- Add screenshots and setup notes specific to the project
+- `embeddedshop://advanced-lab`
+- `embeddedshop://diagnostics`
+- `embeddedshop://product/pi5-lab-kit/home`
